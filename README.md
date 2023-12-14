@@ -1,19 +1,15 @@
-# Template Repository
+# Minecraft Classic Parser (Go)
 
-A short description about this project here.
+A library for parsing Minecraft Classic c0.0.14a-c0.30 worlds.
 
-## How To Use (GUI)
-
-Coming Soon.
-
-## How To Use (CLI)
+## How To Install
 
 Coming Soon.
 
-## Minimum \<Language> Version
-
-* \<language> \<version> 
-
-# Screen Shots
+## How To Build
 
 Coming Soon.
+
+## Minimum Go Version
+
+* Go 1.20
