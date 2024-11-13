@@ -1,4 +1,4 @@
-package mcclassicparser
+package mc_classic_parser
 
 import "fmt"
 
