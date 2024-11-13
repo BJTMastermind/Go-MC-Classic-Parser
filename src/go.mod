@@ -1,4 +1,4 @@
-module github.com/BJTMastermind/mc_classic_parser
+module github.com/BJTMastermind/Go-MC-Classic-Parser
 
 go 1.20
 
