@@ -12,47 +12,47 @@ type ClassicEntity struct {
     BbHeight float32
     BbWidth float32
     BobStrength float32
-    Collision bool // make optional
+    Collision bool
     Dead bool
     DeathScore int32
     DeathTime int32
-    FallDistance float32 // make optional
-    FootSize float32 // make optional
+    FallDistance float32
+    FootSize float32
     HasHair bool
     Health int32
     HeightOffset float32
     HorizontalCollision bool
-    Hovered bool // make optional
+    Hovered bool
     HurtDir float32
     HurtDuration int32
     HurtTime int32
     InvulnerableDuration int32
     InvulnerableTime int32
     LastHealth int32
-    MakeStepSound bool // make optional
+    MakeStepSound bool
     ModelName string
-    NoPhysics bool // make optional
+    NoPhysics bool
     ORun float32
     OTilt float32
     OnGround bool
-    Pushthrough float32 // make optional
+    Pushthrough float32
     Removed bool
     RenderOffset float32
     Rot float32
     RotA float32
     RotOffs float32
     Run float32
-    Slide bool // make optional
+    Slide bool
     Speed float32
-    TextureId int32 // make optional
+    TextureId int32
     TextureName string
     TickCount int32
     Tilt float32
     TimeOffs float32
-    WalkDist float32 // make optional
-    WalkDistO float32 // make optional
+    WalkDist float32
+    WalkDistO float32
     X float32
-    XOld float32 // make optional
+    XOld float32
     XRot float32
     XRotO float32
     Xd float32
@@ -60,14 +60,14 @@ type ClassicEntity struct {
     Y float32
     YBodyRot float32
     YBodyRotO float32
-    YOld float32 // make optional
+    YOld float32
     YRot float32
     YRotO float32
-    YSlideOffset float32 // make optional
+    YSlideOffset float32
     Yd float32
     Yo float32
     Z float32
-    ZOld float32 // make optional
+    ZOld float32
     Zd float32
     Zo float32
 }
