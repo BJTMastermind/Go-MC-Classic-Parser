@@ -1,15 +1,13 @@
 # Minecraft Classic Parser (Go)
 
-A library for parsing Minecraft Classic c0.0.14a-c0.30 worlds.
+A library for parsing Minecraft Classic c0.0.14a - c0.30 worlds.
 
 ## How To Install
 
-Coming Soon.
+```bash
+go get -u github.com/BJTMastermind/Go-MC-Classic-Parser
+```
 
-## How To Build
-
-Coming Soon.
-
-## Minimum Go Version
+## Language(s) Used
 
 * Go 1.20
