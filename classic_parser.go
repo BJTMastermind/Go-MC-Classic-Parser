@@ -5,7 +5,6 @@ import (
     "compress/gzip"
     "encoding/binary"
     "errors"
-    "fmt"
     "os"
     "reflect"
 
@@ -17,7 +16,7 @@ type ClassicParser struct {
     // Data map[string]any
 }
 
-func (cp *ClassicParser) Parse(filepath string) (*ClassicWorld, error) {
+func (cp *ClassicParser) ParseFile(filepath string) (*ClassicWorld, error) {
     // Check that given file is a gzipped file
     gzbytes, _ := os.ReadFile(filepath)
 
@@ -32,9 +31,6 @@ func (cp *ClassicParser) Parse(filepath string) (*ClassicWorld, error) {
     gzReader, _ := gzip.NewReader(bytes.NewBuffer(gzbytes))
     defer gzReader.Close()
 
-    // Parse Minecraft Classic world into ClassicWorld struct
-    cw := ClassicWorld{}
-
     var magic int32
     var version byte
     var java_object = make([]byte, uncompressedSize - 5)
@@ -46,9 +42,14 @@ func (cp *ClassicParser) Parse(filepath string) (*ClassicWorld, error) {
         return nil, errors.New("Not a vaild Minecraft Classic 0.0.14a - 0.30 world save!")
     }
 
-    fmt.Println("Found a vaild Minecraft Classic 0.0.14a - 0.30 world save!")
+    return cp.ParseBytes(java_object)
+}
 
-    objects, _ := jserial.ParseSerializedObject(java_object)
+func (cp *ClassicParser) ParseBytes(bytes []byte) (*ClassicWorld, error) {
+    // Parse Minecraft Classic world into ClassicWorld struct
+    cw := ClassicWorld{}
+
+    objects, _ := jserial.ParseSerializedObject(bytes)
     data := objects[0].(map[string]any)
     // cp.Data = data
 
@@ -66,7 +67,7 @@ func (cp *ClassicParser) Parse(filepath string) (*ClassicWorld, error) {
 
     cw.GrowTrees = cp.getOrDefault(data["growTrees"], (bool)(false)).(bool)
     cw.Height = cp.getOrDefault(data["height"], (int32)(0)).(int32)
-    cw.Name = cp.getOrDefault(data["name"], (string)("")).(string)
+    cw.Name = cp.getOrDefault(data["name"], (string)("A Nice World")).(string)
 
     cw.Player = cp.parsePlayer(cp.getOrDefault(data["player"], (map[string]any)(nil)).(map[string]any))
     cw.RotSpawn = cp.getOrDefault(data["rotSpawn"], (float32)(0)).(float32)
@@ -101,10 +102,10 @@ func (cp *ClassicParser) toInt32Array(arr []any) []int32 {
     return out
 }
 
-func (cp *ClassicParser) parseBlocks(blocks []any) []int8 {
-    var out []int8
+func (cp *ClassicParser) parseBlocks(blocks []any) []byte {
+    var out []byte
     for i := 0; i < len(blocks); i++ {
-        out = append(out, blocks[i].(int8))
+        out = append(out, blocks[i].(byte))
     }
     return out
 }
