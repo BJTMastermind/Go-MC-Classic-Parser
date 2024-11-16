@@ -3,7 +3,7 @@ package mc_classic_parser
 import "fmt"
 
 type ClassicWorld struct {
-    Blocks []byte
+    Blocks []int8
     CloudColor int32
     CreateTime int64
     CreativeMode bool

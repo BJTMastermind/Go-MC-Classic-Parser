@@ -102,10 +102,10 @@ func (cp *ClassicParser) toInt32Array(arr []any) []int32 {
     return out
 }
 
-func (cp *ClassicParser) parseBlocks(blocks []any) []byte {
-    var out []byte
+func (cp *ClassicParser) parseBlocks(blocks []any) []int8 {
+    var out []int8
     for i := 0; i < len(blocks); i++ {
-        out = append(out, blocks[i].(byte))
+        out = append(out, blocks[i].(int8))
     }
     return out
 }
