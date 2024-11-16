@@ -11,10 +11,7 @@ import (
     "github.com/jkeys089/jserial"
 )
 
-type ClassicParser struct {
-    // for testing
-    // Data map[string]any
-}
+type ClassicParser struct {}
 
 func (cp *ClassicParser) ParseFile(filepath string) (*ClassicWorld, error) {
     // Check that given file is a gzipped file
@@ -51,29 +48,21 @@ func (cp *ClassicParser) ParseBytes(bytes []byte) (*ClassicWorld, error) {
 
     objects, _ := jserial.ParseSerializedObject(bytes)
     data := objects[0].(map[string]any)
-    // cp.Data = data
 
     cw.Blocks = cp.parseBlocks(data["blocks"].([]any))
-
     cw.CloudColor = cp.getOrDefault(data["cloudColor"], (int32)(16777215)).(int32)
     cw.CreateTime = cp.getOrDefault(data["createTime"], (int64)(0)).(int64)
-
     cw.CreativeMode = cp.getOrDefault(data["creativeMode"], (bool)(false)).(bool)
     cw.Creator = cp.getOrDefault(data["creator"], (string)("")).(string)
     cw.Depth = cp.getOrDefault(data["height"], (int32)(0)).(int32)
     cw.Entities = cp.parseEntities(data)
-
     cw.FogColor = cp.getOrDefault(data["fogColor"], (int32)(16777215)).(int32)
-
     cw.GrowTrees = cp.getOrDefault(data["growTrees"], (bool)(false)).(bool)
     cw.Height = cp.getOrDefault(data["depth"], (int32)(0)).(int32)
     cw.Name = cp.getOrDefault(data["name"], (string)("A Nice World")).(string)
-
     cw.Player = cp.parsePlayer(cp.getOrDefault(data["player"], (map[string]any)(nil)).(map[string]any))
     cw.RotSpawn = cp.getOrDefault(data["rotSpawn"], (float32)(0)).(float32)
-
     cw.SkyColor = cp.getOrDefault(data["skyColor"], (int32)(10079487)).(int32)
-
     cw.WaterLevel = cp.getOrDefault(data["waterLevel"], (int32)(cw.Height / 2)).(int32)
     cw.Width = cp.getOrDefault(data["width"], (int32)(0)).(int32)
     cw.XSpawn = cp.getOrDefault(data["xSpawn"], (int32)(0)).(int32)
@@ -162,7 +151,6 @@ func (cp *ClassicParser) parseEntities(data map[string]any) []ClassicEntity {
         entity.Health = cp.getOrDefault(entityData["health"], (int32)(0)).(int32)
         entity.HeightOffset = cp.getOrDefault(entityData["heightOffset"], (float32)(0)).(float32)
         entity.HorizontalCollision = cp.getOrDefault(entityData["horizontalCollision"], (bool)(false)).(bool)
-
         entity.Hovered = cp.getOrDefault(data["hovered"], (bool)(false)).(bool)
         entity.HurtDir = cp.getOrDefault(entityData["hurtDir"], (float32)(0)).(float32)
         entity.HurtDuration = cp.getOrDefault(entityData["hurtDuration"], (int32)(0)).(int32)
@@ -172,15 +160,12 @@ func (cp *ClassicParser) parseEntities(data map[string]any) []ClassicEntity {
         entity.LastHealth = cp.getOrDefault(entityData["lastHealth"], (int32)(0)).(int32)
         entity.MakeStepSound = cp.getOrDefault(entityData["makeStepSound"], (bool)(false)).(bool)
         entity.ModelName = cp.getOrDefault(entityData["modelName"], (string)("")).(string)
-
         entity.NoPhysics = cp.getOrDefault(data["noPhysics"], (bool)(false)).(bool)
         entity.ORun = cp.getOrDefault(entityData["oRun"], (float32)(0)).(float32)
         entity.OTilt = cp.getOrDefault(entityData["oTilt"], (float32)(0)).(float32)
         entity.OnGround = cp.getOrDefault(entityData["onGround"], (bool)(false)).(bool)
-
         entity.Pushthrough = cp.getOrDefault(data["pushthrough"], (float32)(0)).(float32)
         entity.Removed = cp.getOrDefault(entityData["removed"], (bool)(false)).(bool)
-
         entity.RenderOffset = cp.getOrDefault(data["renderOffset"], (float32)(0)).(float32)
         entity.Rot = cp.getOrDefault(entityData["rot"], (float32)(0)).(float32)
         entity.RotA = cp.getOrDefault(entityData["rotA"], (float32)(0)).(float32)
@@ -257,7 +242,6 @@ func (cp *ClassicParser) parsePlayer(data map[string]any) ClassicPlayer {
     player.Health = cp.getOrDefault(data["health"], (int32)(0)).(int32)
     player.HeightOffset = cp.getOrDefault(data["heightOffset"], (float32)(0)).(float32)
     player.HorizontalCollision = cp.getOrDefault(data["horizontalCollision"], (bool)(false)).(bool)
-
     player.Hovered = cp.getOrDefault(data["hovered"], (bool)(false)).(bool)
     player.HurtDir = cp.getOrDefault(data["hurtDir"], (float32)(0)).(float32)
     player.HurtDuration = cp.getOrDefault(data["hurtDuration"], (int32)(0)).(int32)
@@ -274,16 +258,13 @@ func (cp *ClassicParser) parsePlayer(data map[string]any) ClassicPlayer {
     player.LastHealth = cp.getOrDefault(data["lastHealth"], (int32)(0)).(int32)
     player.MakeStepSound = cp.getOrDefault(data["makeStepSound"], (bool)(false)).(bool)
     player.ModelName = cp.getOrDefault(data["modelName"], (string)("")).(string)
-
     player.NoPhysics = cp.getOrDefault(data["noPhysics"], (bool)(false)).(bool)
     player.OBob = cp.getOrDefault(data["oBob"], (float32)(0)).(float32)
     player.ORun = cp.getOrDefault(data["oRun"], (float32)(0)).(float32)
     player.OTilt = cp.getOrDefault(data["oTilt"], (float32)(0)).(float32)
     player.OnGround = cp.getOrDefault(data["onGround"], (bool)(false)).(bool)
-
     player.Pushthrough = cp.getOrDefault(data["pushthrough"], (float32)(0)).(float32)
     player.Removed = cp.getOrDefault(data["removed"], (bool)(false)).(bool)
-
     player.RenderOffset = cp.getOrDefault(data["renderOffset"], (float32)(0)).(float32)
     player.Rot = cp.getOrDefault(data["rot"], (float32)(0)).(float32)
     player.RotA = cp.getOrDefault(data["rotA"], (float32)(0)).(float32)
