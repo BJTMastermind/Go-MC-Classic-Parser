@@ -51,24 +51,24 @@ type ClassicEntity struct {
     TimeOffs float32
     WalkDist float32
     WalkDistO float32
-    X float32
-    XOld float32
-    XRot float32
+    X float32 // x position
+    XOld float32 // x position old (unused)
+    XRot float32 // yaw
     XRotO float32
-    Xd float32
+    Xd float32 // motion x
     Xo float32
-    Y float32
+    Y float32 // y position
     YBodyRot float32
     YBodyRotO float32
-    YOld float32
-    YRot float32
+    YOld float32 // y position old (unused)
+    YRot float32 // pitch
     YRotO float32
     YSlideOffset float32
-    Yd float32
+    Yd float32 // motion y
     Yo float32
-    Z float32
-    ZOld float32
-    Zd float32
+    Z float32 // z position
+    ZOld float32 // z position old (unused)
+    Zd float32 // motion z
     Zo float32
 }
 

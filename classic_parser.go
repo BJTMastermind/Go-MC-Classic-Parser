@@ -60,13 +60,13 @@ func (cp *ClassicParser) ParseBytes(bytes []byte) (*ClassicWorld, error) {
 
     cw.CreativeMode = cp.getOrDefault(data["creativeMode"], (bool)(false)).(bool)
     cw.Creator = cp.getOrDefault(data["creator"], (string)("")).(string)
-    cw.Depth = cp.getOrDefault(data["depth"], (int32)(0)).(int32)
+    cw.Depth = cp.getOrDefault(data["height"], (int32)(0)).(int32)
     cw.Entities = cp.parseEntities(data)
 
     cw.FogColor = cp.getOrDefault(data["fogColor"], (int32)(16777215)).(int32)
 
     cw.GrowTrees = cp.getOrDefault(data["growTrees"], (bool)(false)).(bool)
-    cw.Height = cp.getOrDefault(data["height"], (int32)(0)).(int32)
+    cw.Height = cp.getOrDefault(data["depth"], (int32)(0)).(int32)
     cw.Name = cp.getOrDefault(data["name"], (string)("A Nice World")).(string)
 
     cw.Player = cp.parsePlayer(cp.getOrDefault(data["player"], (map[string]any)(nil)).(map[string]any))
